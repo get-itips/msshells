@@ -22,8 +22,8 @@ title: MSShells.net
 email: andresg@capazero.net
 description: >- # this means to ignore newlines until "baseurl:"
   This site aims to keep track of the -current- Official Microsoft PowerShell modules to administer Microsoft 365 and Azure. Contributions are welcomed!
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "msshells" # the subpath of your site, e.g. /blog
+url: "https://get-itips.capazero.net" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: andresgorzelany
 github_username:  get-itips
 
