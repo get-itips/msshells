@@ -15,10 +15,10 @@ $modulesToBeChecked = @(
 $moduleRegex = '^\|(?:[^\|]*)\| *\[(?:[\w .]*)\]\(https\:\/\/www\.powershellgallery\.com\/packages\/(\w.*)\/?\) *\|([^\|]*)\|[^\|]*\|([^\|]*)\|[^\|]*'
 $changesDetected = @()
 
-$mdFileContent = Invoke-RestMethod -Method GET -Uri $indexFilePath
-# TODO Change to where-object
+$mdFileContent = Get-Content -Uri $indexFilePath
+
 $moduleRows = foreach ($fileRow in $mdFileContent.Split("`n")) {
-  # Skip non-modules lines9
+  # Skip non-modules lines
   if ($fileRow -notmatch $moduleRegex) {
     continue
   }
