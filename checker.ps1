@@ -15,7 +15,7 @@ $modulesToBeChecked = @(
 $moduleRegex = '^\|(?:[^\|]*)\| *\[(?:[\w .]*)\]\(https\:\/\/www\.powershellgallery\.com\/packages\/(\w.*)\/?\) *\|([^\|]*)\|[^\|]*\|([^\|]*)\|[^\|]*'
 $changesDetected = @()
 
-$mdFileContent = Get-Content -Uri $indexFilePath
+$mdFileContent = Get-Content $indexFilePath
 
 $moduleRows = foreach ($fileRow in $mdFileContent.Split("`n")) {
   # Skip non-modules lines
