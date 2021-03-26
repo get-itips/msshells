@@ -19,5 +19,6 @@ layout: default
 |Rollup module for Power BI Cmdlets|[MicrosoftPowerBIMgmt](https://www.powershellgallery.com/packages/MicrosoftPowerBIMgmt)|1.0.974|Install-Module -Name MicrosoftPowerBIMgmt|N/A|N/A|
 |PowerApps (Administrator)|[Microsoft.PowerApps.Administration.PowerShell](https://www.powershellgallery.com/packages/Microsoft.PowerApps.Administration.PowerShell)|2.0.110|Install-Module -Name Microsoft.PowerApps.Administration.PowerShell|N/A|N/A|
 |PowerApps (Maker)|[Microsoft.PowerApps.PowerShell](https://www.powershellgallery.com/packages/Microsoft.PowerApps.PowerShell/)|1.0.20|Install-Module -Name Microsoft.PowerApps.PowerShell|N/A|N/A|
+|MS Commerce|[MSCommerce](https://www.powershellgallery.com/packages/MSCommerce)|1.6|Install-Module -Name MSCommerce|N/A|N/A|
 
 Do you think a module is missing or has incorrect information? Please, let me know, either creating an [issue](https://github.com/get-itips/msshells/issues/new) or a [pull request](https://github.com/get-itips/msshells/edit/dev/index.markdown) against this page.
