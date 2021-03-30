@@ -11,7 +11,7 @@ layout: default
 | Microsoft Teams | [MicrosoftTeams](https://www.powershellgallery.com/packages/MicrosoftTeams) |          2.0.0 | Install-Module MicrosoftTeams | 1.1.11-preview  | Install-Module MicrosoftTeams -RequiredVersion 1.1.11-preview -AllowPrerelease |
 | Exchange Online | [ExchangeOnlineManagement](https://www.powershellgallery.com/packages/ExchangeOnlineManagement)  |2.0.4|Install-Module -Name ExchangeOnlineManagement|2.0.4-preview9|Install-Module -Name ExchangeOnlineManagement -RequiredVersion 2.0.4-Preview9 -AllowPrerelease|
 | Security & Compliance        |[ExchangeOnlineManagement](https://www.powershellgallery.com/packages/ExchangeOnlineManagement)                |2.0.4                |Install-Module -Name ExchangeOnlineManagement|2.0.4-preview9|Install-Module -Name ExchangeOnlineManagement -RequiredVersion 2.0.4-Preview9 -AllowPrerelease|
-|SharePoint Online|[Microsoft.Online.SharePoint.PowerShell](https://www.powershellgallery.com/packages/Microsoft.Online.SharePoint.PowerShell)|16.0.21109.12000|Install-Module -Name Microsoft.Online.SharePoint.PowerShell|N/A|N/A|
+|SharePoint Online|[Microsoft.Online.SharePoint.PowerShell](https://www.powershellgallery.com/packages/Microsoft.Online.SharePoint.PowerShell)|16.0.21116.12000|Install-Module -Name Microsoft.Online.SharePoint.PowerShell|N/A|N/A|
 |Azure AD|[AzureAD](https://www.powershellgallery.com/packages/AzureAD)|2.0.2.130|Install-Module -Name AzureAD|See next row|N/A|
 |Azure AD|[AzureADPreview](https://www.powershellgallery.com/packages/AzureADPreview/)|2.0.2.129|Install-Module -Name AzureADPreview|N/A|N/A|
 |Whiteboard|[WhiteboardAdmin](https://www.powershellgallery.com/packages/WhiteboardAdmin)|1.2.0|Install-Module -Name WhiteboardAdmin|N/A|N/A|
@@ -22,3 +22,6 @@ layout: default
 |MS Commerce|[MSCommerce](https://www.powershellgallery.com/packages/MSCommerce)|1.6|Install-Module -Name MSCommerce|N/A|N/A|
 
 Do you think a module is missing or has incorrect information? Please, let me know, either creating an [issue](https://github.com/get-itips/msshells/issues/new) or a [pull request](https://github.com/get-itips/msshells/edit/dev/index.markdown) against this page.
+
+## Contributors
+- [Robert Dyjas](https://twitter.com/robdyy)
