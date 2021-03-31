@@ -8,7 +8,7 @@ layout: default
 
 | To Administer   |   Module Name  | Stable Version | How To Install                | Preview Version | How To Install                                                                 |
 |-----------------|:--------------:|---------------:|-------------------------------|-----------------|--------------------------------------------------------------------------------|
-| Microsoft Teams | [MicrosoftTeams](https://www.powershellgallery.com/packages/MicrosoftTeams) |          2.0.0 | Install-Module MicrosoftTeams | 1.1.11-preview  | Install-Module MicrosoftTeams -RequiredVersion 1.1.11-preview -AllowPrerelease |
+| Microsoft Teams | [MicrosoftTeams](https://www.powershellgallery.com/packages/MicrosoftTeams) |          2.0.0 | Install-Module MicrosoftTeams | 2.1.0-preview  | Install-Module MicrosoftTeams -RequiredVersion 2.1.0-preview -AllowPrerelease |
 | Exchange Online | [ExchangeOnlineManagement](https://www.powershellgallery.com/packages/ExchangeOnlineManagement)  |2.0.4|Install-Module -Name ExchangeOnlineManagement|2.0.4-preview9|Install-Module -Name ExchangeOnlineManagement -RequiredVersion 2.0.4-Preview9 -AllowPrerelease|
 | Security & Compliance        |[ExchangeOnlineManagement](https://www.powershellgallery.com/packages/ExchangeOnlineManagement)                |2.0.4                |Install-Module -Name ExchangeOnlineManagement|2.0.4-preview9|Install-Module -Name ExchangeOnlineManagement -RequiredVersion 2.0.4-Preview9 -AllowPrerelease|
 |SharePoint Online|[Microsoft.Online.SharePoint.PowerShell](https://www.powershellgallery.com/packages/Microsoft.Online.SharePoint.PowerShell)|16.0.21116.12000|Install-Module -Name Microsoft.Online.SharePoint.PowerShell|N/A|N/A|
