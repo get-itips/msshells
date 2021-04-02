@@ -159,7 +159,21 @@ try {
   Write-Host 'Finished updating data'
 
   # Output value to be used in commit message
-  echo "::set-output name=changed::$($changesDetected.module -join ' ')" 
+  $changedCount = @($changesDetected.module).count
+  if ($changedCount -gt 1) {
+    $changedText = "$changedCount modules"
+    $module = 'modules'
+    $version = 'versions'
+  } else {
+    $changedText = $changesDetected.module
+    $module = 'module'
+    $version = 'version'
+  }
+
+  echo "::set-output name=changed::$changedText"
+  echo "::set-output name=module::$module"
+  echo "::set-output name=version::$version" 
+
   
 } catch {
   $err = $_
