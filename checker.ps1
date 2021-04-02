@@ -152,6 +152,8 @@ try {
       }
     }
   }
+
+  $currentContent | Out-File $indexFilePath
   
 } catch {
   $err = $_
