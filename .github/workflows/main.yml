@@ -1,4 +1,4 @@
-name: CI
+name: Autoupdater
 
 # Run every day at 2AM 
 on:
