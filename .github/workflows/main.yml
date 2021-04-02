@@ -29,7 +29,7 @@ jobs:
           title: Automatic update of ${{ steps.checker.outputs.changed }}
           body: |
             Hello there 👋
-            New ${{ steps.checker.outputs.version }} of ${{ steps.checker.outputs.module }} detected so I updated your repository 🎉
+            🚨 New ${{ steps.checker.outputs.version }} of ${{ steps.checker.outputs.module }} detected 
             ✅ Please review my edit and merge
             ⏰ I'll check all the modules tomorrow
             
