@@ -14,10 +14,10 @@
   - Before running, make sure to checkout the repository 
   so the data can be pulled from local file
   - Get current data from Markdown file
-  - Output any differences for pull request
+  - Update checked file so that PR can be opened
 
   Known issues:
-  -
+  - Not working for modules outside gallery, i.e. Microsoft.SharePoint.MigrationTool
 
   .EXAMPLE
   checker.ps1
@@ -40,10 +40,12 @@ $modulesToBeChecked = @(
   'Microsoft.PowerApps.PowerShell',
   'MSCommerce'
 )
-$moduleRegex = '^\|(?:[^\|]*)\| *\[(?:[\w .]*)\]\(https\:\/\/www\.powershellgallery\.com\/packages\/(\w.*)\/?\) *\|([^\|]*)\|[^\|]*\|([^\|]*)\|[^\|]*'
-$skippedLinesRegex = '^\|(?:(?: *To Administer)|(?:-+))'
 $batchSize = 40
 $findPackagesEndpointUrl = 'https://www.powershellgallery.com/api/v2/FindPackagesById()'
+
+# Regexes
+$moduleRegex = '^\|(?:[^\|]*)\| *\[(?:[\w .]*)\]\(https\:\/\/www\.powershellgallery\.com\/packages\/(\w.*)\/?\) *\|([^\|]*)\|[^\|]*\|([^\|]*)\|[^\|]*'
+$skippedLinesRegex = '^\|(?:(?: *To Administer)|(?:-+))'
 
 $changesDetected = @()
 
@@ -55,6 +57,7 @@ $changesDetected = @()
 #region Processing
 # ================
 try {
+  $ErrorActionPreference = 'Stop'
   $startTime = Get-Date
   Write-Host "Starting script at $startTime"
   
@@ -123,7 +126,6 @@ try {
           "Type" = "Prerelease"
           "Version" = $latestPreview.properties.Version
         }
-    
       Write-Host "New prerelease version of $moduleName found: $($latestPreview.properties.Version)"
     } else {
       Write-Verbose "No new prerelease version of $moduleName found"
@@ -154,19 +156,22 @@ try {
   }
 
   $currentContent | Out-File $indexFilePath
+  Write-Host 'Finished updating data'
+
+  # Output value to be used in commit message
+  echo "::set-output name=changed::$($changesDetected.module -join ' ')" 
   
 } catch {
   $err = $_
-  Write-Host "ERROR"
-  Write-Host $err
+  Write-Host "ERROR at $($err.ScriptStackTrace)"
+  Write-Host $err.Exception.Message
 } finally {
   $endTime = Get-Date
   $processedInSeconds = [math]::round(($endTime - $startTime).TotalSeconds)
-  Write-Host 'Finished updating data'
   Write-Host "Script finished in $processedInSeconds seconds"
-  Write-Host $currentContent
+  # Uncomment for debugging
+  # Write-Host $currentContent
 }
-
 
 # ================
 #endregion Processing
