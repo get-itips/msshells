@@ -1,4 +1,31 @@
-Set-Location $env:GITHUB_WORKSPACE
+<#
+  .SYNOPSIS
+  Detects any new versions of modules for https://msshells.net
+  
+  .DESCRIPTION
+  Detects any new versions of modules for https://msshells.net
+  Should be run via scheduled GitHub Actions
+  Version: 0.1
+
+  .NOTES
+  Author: Robert Dyjas https://github.com/robdy
+
+  Workflow:
+  - Before running, make sure to checkout the repository 
+  so the data can be pulled from local file
+  - Get current data from Markdown file
+  - Output any differences for pull request
+
+  Known issues:
+  -
+
+  .EXAMPLE
+  checker.ps1
+#>
+
+# ================
+#region Variables
+# ================
 $indexFilePath = 'index.markdown'
 $modulesToBeChecked = @(
   'MicrosoftTeams',
@@ -10,100 +37,135 @@ $modulesToBeChecked = @(
   # 'Microsoft.SharePoint.MigrationTool',
   'MicrosoftPowerBIMgmt',
   'Microsoft.PowerApps.Administration.PowerShell',
-  'Microsoft.PowerApps.PowerShell'
+  'Microsoft.PowerApps.PowerShell',
+  'MSCommerce'
 )
 $moduleRegex = '^\|(?:[^\|]*)\| *\[(?:[\w .]*)\]\(https\:\/\/www\.powershellgallery\.com\/packages\/(\w.*)\/?\) *\|([^\|]*)\|[^\|]*\|([^\|]*)\|[^\|]*'
+$skippedLinesRegex = '^\|(?:(?: *To Administer)|(?:-+))'
+$batchSize = 40
+$findPackagesEndpointUrl = 'https://www.powershellgallery.com/api/v2/FindPackagesById()'
+
 $changesDetected = @()
 
-$mdFileContent = Get-Content $indexFilePath
+# ================
+#endregion Variables
+# ================
 
-$moduleRows = foreach ($fileRow in $mdFileContent.Split("`n")) {
-  # Skip non-modules lines
-  if ($fileRow -notmatch $moduleRegex) {
-    continue
+# ================
+#region Processing
+# ================
+try {
+  $startTime = Get-Date
+  Write-Host "Starting script at $startTime"
+  
+  # Get current data
+  if ($env:GITHUB_ACTIONS) {
+    Set-Location $env:GITHUB_WORKSPACE
   }
-  # Skip top rows
-  if ($fileRow -match '^\|(?:(?: *To Administer)|(?:-+))') {
-    continue
+  $mdFileContent = Get-Content $indexFilePath
+  
+  # Filter out unnecessary lines
+  $moduleRows = $mdFileContent.Split("`n") | Where-Object {
+    $_ -match $moduleRegex -and
+    $_ -notmatch $skippedLinesRegex
   }
-  $fileRow
-}
-$moduleData = foreach ($moduleRow in $moduleRows) {
-  <#
-  $moduleRow = $moduleRows[0]
-  #>
-  $Matches = $null
-  if ($moduleRow -match $moduleRegex) {
-    @{
-      "ModuleName" = $Matches[1].Trim() -replace('\/$','')
-      "Version" = $Matches[2].Trim()
-      "PrereleaseVersion" = $Matches[3].Trim()
+  
+  # Extract version from applicable lines
+  $moduleData = foreach ($moduleRow in $moduleRows) {
+    <#
+    $moduleRow = $moduleRows[0]
+    #>
+    $Matches = $null
+    if ($moduleRow -match $moduleRegex) {
+      @{
+        "ModuleName" = $Matches[1].Trim() -replace('\/$','')
+        "Version" = $Matches[2].Trim()
+        "PrereleaseVersion" = $Matches[3].Trim()
+      }
     }
   }
-}
-
-foreach ($moduleName in $modulesToBeChecked) {
-  <#
-  $moduleName = $modulesToBeChecked[0]
-  #>
-  $skip = 0
-  $latestVersion = $null
-  $moduleEntry = $moduleData | Where-Object Modulename -eq $moduleName
-  do {
-    $res = Invoke-RestMethod -Method Get -Uri "https://www.powershellgallery.com/api/v2/FindPackagesById()?id='$moduleName'&`$skip=$skip&`$top=40"
-    if ($res) {
-      $latestVersion = $res | Where-Object {$_.properties.IsLatestVersion.'#text' -eq 'true'}
-      $latestPreview = $res | Where-Object {$_.properties.isPrerelease.'#text' -eq 'true'} |
-        Sort-Object {[System.Version]($_.properties.Version -replace("-preview|-beta|-alpha",""))} |
-        Select-Object -Last 1
-    }
-    $skip += 40
-  } until ($latestVersion -or $skip -eq '1000')
-
-  if ($moduleEntry.Version -ne $latestVersion.properties.Version) {
-    $changesDetected += @{
-      "Module" = $moduleName
-      "Type" = "Release"
-      "Version" = $latestVersion.properties.Version
-    }
-    # "New version of $moduleName released: $($latestVersion.properties.Version)"
-  } else {
-    Write-Verbose "No new version of $moduleName found"
-  }
-  if (
-      $moduleEntryPrereleaseVersion -match '(\d+\.){2,3}\d+' -and
-      $moduleEntry.PrereleaseVersion -ne $latestPreview.properties.Version
-    ) {
+  
+  foreach ($moduleName in $modulesToBeChecked) {
+    <#
+    $moduleName = $modulesToBeChecked[0]
+    #>
+    $skip = 0
+    $latestVersion = $null
+    $latestPreview = $null
+    $moduleEntry = $moduleData | Where-Object Modulename -eq $moduleName
+    do {
+      $res = Invoke-RestMethod -Method Get -Uri "$($findPackagesEndpointUrl)?id='$moduleName'&`$skip=$skip&`$top=$batchSize"
+      if ($res) {
+        $latestVersion = $res | Where-Object {$_.properties.IsLatestVersion.'#text' -eq 'true'}
+        $latestPreview = $res | Where-Object {$_.properties.isPrerelease.'#text' -eq 'true'} |
+          Sort-Object {[System.Version]($_.properties.Version -replace("-preview|-beta|-alpha",""))} |
+          Select-Object -Last 1
+      }
+      $skip += $batchSize
+    } until ($latestVersion -or $skip -eq '1000')
+  
+    if ($moduleEntry.Version -ne $latestVersion.properties.Version) {
       $changesDetected += @{
         "Module" = $moduleName
-        "Type" = "Prerelease"
-        "Version" = $latestPreview.properties.Version
+        "Type" = "Release"
+        "Version" = $latestVersion.properties.Version
       }
-  
-    # $changesDetected += "New prerelease version of $moduleName found: $($latestPreview.properties.Version)"
-  } else {
-    Write-Verbose "No new prerelease version of $moduleName found"
-  }
-}
-
-if (-not $changesDetected) {
-  return
-}
-
-$currentContent = Get-Content $indexFilePath
-
-foreach ($change in $changesDetected) {
-  <#
-  $change = $changesDetected[0]
-  #>
-  $currentContent = $currentContent | ForEach-Object {
-    if ($_ -match "https\:\/\/www\.powershellgallery\.com\/packages\/$($change.Module)") {
-      if ($_ -match '\| *((?:\d+\.){2,}\d+(?:-preview)?)\d* *\|') {
-        $version = $Matches[1]
-        "$($_ -replace ($version, $change.Version))"
-      }
+      Write-Host "New version of $moduleName released: $($latestVersion.properties.Version)"
     } else {
-      $_
+      Write-Verbose "No new version of $moduleName found"
+    }
+    if (
+        $moduleEntryPrereleaseVersion -match '(\d+\.){2,3}\d+' -and
+        $moduleEntry.PrereleaseVersion -ne $latestPreview.properties.Version
+      ) {
+        $changesDetected += @{
+          "Module" = $moduleName
+          "Type" = "Prerelease"
+          "Version" = $latestPreview.properties.Version
+        }
+    
+      Write-Host "New prerelease version of $moduleName found: $($latestPreview.properties.Version)"
+    } else {
+      Write-Verbose "No new prerelease version of $moduleName found"
     }
   }
+  
+  if (-not $changesDetected) {
+    Write-Host 'No updates to modules detected'
+    return
+  }
+  
+  $currentContent = Get-Content $indexFilePath
+  
+  foreach ($change in $changesDetected) {
+    <#
+    $change = $changesDetected[0]
+    #>
+    $currentContent = $currentContent | ForEach-Object {
+      if ($_ -match "https\:\/\/www\.powershellgallery\.com\/packages\/$($change.Module)") {
+        if ($_ -match '\| *((?:\d+\.){2,}\d+(?:-preview)?)\d* *\|') {
+          $version = $Matches[1]
+          "$($_ -replace ($version, $change.Version))"
+        }
+      } else {
+        $_
+      }
+    }
+  }
+  
+} catch {
+  $err = $_
+  Write-Host "ERROR"
+  Write-Host $err
+} finally {
+  $endTime = Get-Date
+  $processedInSeconds = [math]::round(($endTime - $startTime).TotalSeconds)
+  Write-Host 'Finished updating data'
+  Write-Host "Script finished in $processedInSeconds seconds"
+  Write-Host $currentContent
 }
+
+
+# ================
+#endregion Processing
+# ================
