@@ -23,5 +23,12 @@ layout: default
 
 Do you think a module is missing or has incorrect information? Please, let me know, either creating an [issue](https://github.com/get-itips/msshells/issues/new) or a [pull request](https://github.com/get-itips/msshells/edit/dev/index.markdown) against this page.
 
+Looking for a complete list of Microsoft 365/Azure portals? Check out [https://msportals.io](https://msportals.io/) by [Adam Fowler](https://twitter.com/AdamFowler_IT).
+
+## Maintainer
+- [Andrés Gorzelany](https://twitter.com/andresgorzelany)
+
 ## Contributors
 - [Robert Dyjas](https://twitter.com/robdyy)
+
+
