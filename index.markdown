@@ -25,6 +25,13 @@ Do you think a module is missing or has incorrect information? Please, let me kn
 
 Looking for a complete list of Microsoft 365/Azure portals? Check out [https://msportals.io](https://msportals.io/) by [Adam Fowler](https://twitter.com/AdamFowler_IT).
 
+## Am I running the most up-to-date version?
+You can use the following PowerShell one-liner to check:
+
+```powershell
+Get-Module -ListAvailable MicrosoftTeams,ExchangeOnlineManagement,Microsoft.Online.SharePoint.PowerShell,AzureAD,AzureADPreview,WhiteboardAdmin,Microsoft.SharePoint.MigrationTool,MicrosoftPowerBIMgmt,Microsoft.PowerApps.Administration.PowerShell,Microsoft.PowerApps.PowerShell,MSCommerce | Format-Table Name,Version
+```
+
 ## Maintainer
 - [Andrés Gorzelany](https://twitter.com/andresgorzelany)
 
