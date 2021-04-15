@@ -8,7 +8,7 @@ layout: default
 
 | To Administer   |   Module Name  | Stable Version | How To Install                | Preview Version | How To Install                                                                 |
 |-----------------|:--------------:|---------------:|-------------------------------|-----------------|--------------------------------------------------------------------------------|
-| Microsoft Teams | [MicrosoftTeams](https://www.powershellgallery.com/packages/MicrosoftTeams) |          2.0.0 | Install-Module MicrosoftTeams | 2.1.0-preview  | Install-Module MicrosoftTeams -RequiredVersion 2.1.0-preview -AllowPrerelease |
+| Microsoft Teams | [MicrosoftTeams](https://www.powershellgallery.com/packages/MicrosoftTeams) |          2.0.0 | Install-Module MicrosoftTeams | 2.2.0-preview  | Install-Module MicrosoftTeams -RequiredVersion 2.2.0-preview -AllowPrerelease |
 | Exchange Online | [ExchangeOnlineManagement](https://www.powershellgallery.com/packages/ExchangeOnlineManagement)  |2.0.4|Install-Module -Name ExchangeOnlineManagement|2.0.4-preview9|Install-Module -Name ExchangeOnlineManagement -RequiredVersion 2.0.4-Preview9 -AllowPrerelease|
 | Security & Compliance        |[ExchangeOnlineManagement](https://www.powershellgallery.com/packages/ExchangeOnlineManagement)                |2.0.4                |Install-Module -Name ExchangeOnlineManagement|2.0.4-preview9|Install-Module -Name ExchangeOnlineManagement -RequiredVersion 2.0.4-Preview9 -AllowPrerelease|
 |SharePoint Online|[Microsoft.Online.SharePoint.PowerShell](https://www.powershellgallery.com/packages/Microsoft.Online.SharePoint.PowerShell)|16.0.21116.12000|Install-Module -Name Microsoft.Online.SharePoint.PowerShell|N/A|N/A|
@@ -24,6 +24,13 @@ layout: default
 Do you think a module is missing or has incorrect information? Please, let me know, either creating an [issue](https://github.com/get-itips/msshells/issues/new) or a [pull request](https://github.com/get-itips/msshells/edit/dev/index.markdown) against this page.
 
 Looking for a complete list of Microsoft 365/Azure portals? Check out [https://msportals.io](https://msportals.io/) by [Adam Fowler](https://twitter.com/AdamFowler_IT).
+
+## Am I running the most up-to-date version?
+You can use the following PowerShell one-liner to check:
+
+```powershell
+Get-Module -ListAvailable MicrosoftTeams,ExchangeOnlineManagement,Microsoft.Online.SharePoint.PowerShell,AzureAD,AzureADPreview,WhiteboardAdmin,Microsoft.SharePoint.MigrationTool,MicrosoftPowerBIMgmt,Microsoft.PowerApps.Administration.PowerShell,Microsoft.PowerApps.PowerShell,MSCommerce | Format-Table Name,Version
+```
 
 ## Maintainer
 - [Andrés Gorzelany](https://twitter.com/andresgorzelany)
