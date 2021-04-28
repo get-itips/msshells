@@ -17,7 +17,7 @@ layout: default
 |Whiteboard|[WhiteboardAdmin](https://www.powershellgallery.com/packages/WhiteboardAdmin)|1.2.0|Install-Module -Name WhiteboardAdmin|N/A|N/A|
 |SharePoint Migration Tool|[Microsoft.SharePoint.MigrationTool](https://docs.microsoft.com/en-us/sharepointmigration/new-and-improved-features-in-the-sharepoint-migration-tool)|3.4.120.7|Tricky, see [here](https://aka.ms/spmt-ga-page) and [here](https://docs.microsoft.com/sharepointmigration/overview-spmt-ps-cmdlets#before-you-begin)|3.4.121.5|Tricky, see [here](https://spmtreleasescus.blob.core.windows.net/betainstall/default.htm) and [here](https://docs.microsoft.com/sharepointmigration/overview-spmt-ps-cmdlets#before-you-begin)|
 |Rollup module for Power BI Cmdlets|[MicrosoftPowerBIMgmt](https://www.powershellgallery.com/packages/MicrosoftPowerBIMgmt)|1.0.974|Install-Module -Name MicrosoftPowerBIMgmt|N/A|N/A|
-|PowerApps (Administrator)|[Microsoft.PowerApps.Administration.PowerShell](https://www.powershellgallery.com/packages/Microsoft.PowerApps.Administration.PowerShell)|2.0.112|Install-Module -Name Microsoft.PowerApps.Administration.PowerShell|N/A|N/A|
+|PowerApps (Administrator)|[Microsoft.PowerApps.Administration.PowerShell](https://www.powershellgallery.com/packages/Microsoft.PowerApps.Administration.PowerShell)|2.0.121|Install-Module -Name Microsoft.PowerApps.Administration.PowerShell|N/A|N/A|
 |PowerApps (Maker)|[Microsoft.PowerApps.PowerShell](https://www.powershellgallery.com/packages/Microsoft.PowerApps.PowerShell/)|1.0.20|Install-Module -Name Microsoft.PowerApps.PowerShell|N/A|N/A|
 |MS Commerce|[MSCommerce](https://www.powershellgallery.com/packages/MSCommerce)|1.6|Install-Module -Name MSCommerce|N/A|N/A|
 
