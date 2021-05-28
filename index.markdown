@@ -6,8 +6,8 @@ layout: default
 ---
 
 
-| To Administer   |   Module Name  | Stable Version | How To Install                | Preview Version | How To Install                                                                 | How to Connect | Works in PS7? |
-|-----------------|:--------------:|---------------:|-------------------------------|-----------------|--------------------------------------------------------------------------------|-----------------|-----------------|
+|To Administer|Module Name|Stable Version|How To Install|Preview Version|How To Install|How to Connect|Works in PS7?|
+|-----------------|:--------------:|---------------|---------------|-----------------|---------------|-----------------|-----------------|
 | Microsoft Teams | [MicrosoftTeams](https://www.powershellgallery.com/packages/MicrosoftTeams) |          2.3.1 | ```Install-Module MicrosoftTeams``` | 2.3.2-preview  | ```Install-Module MicrosoftTeams -RequiredVersion 2.3.2-preview -AllowPrerelease``` |```Connect-MicrosoftTeams``` [More methods](https://docs.microsoft.com/MicrosoftTeams/teams-powershell-install#sign-in)|No|
 | Exchange Online | [ExchangeOnlineManagement](https://www.powershellgallery.com/packages/ExchangeOnlineManagement)  |2.0.5|```Install-Module -Name ExchangeOnlineManagement```|2.0.5-Preview2|```Install-Module -Name ExchangeOnlineManagement -RequiredVersion 2.0.5-Preview2 -AllowPrerelease```|```Connect-ExchangeOnline``` [More methods](https://docs.microsoft.com/powershell/exchange/connect-to-exchange-online-powershell?view=exchange-ps#connect-to-exchange-online-powershell-using-modern-authentication-with-or-without-mfa)|Yes|
 | Security & Compliance        |[ExchangeOnlineManagement](https://www.powershellgallery.com/packages/ExchangeOnlineManagement)                |2.0.5                |```Install-Module -Name ExchangeOnlineManagement```|2.0.5-Preview2|```Install-Module -Name ExchangeOnlineManagement -RequiredVersion 2.0.5-Preview2 -AllowPrerelease```|```Connect-IPPSSession``` [More methods](https://docs.microsoft.com/powershell/exchange/connect-to-scc-powershell?view=exchange-ps)|Yes|
