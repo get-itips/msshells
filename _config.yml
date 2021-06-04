@@ -18,7 +18,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: MSShells.net
+title: >_☁ MSShells.net
 email: andresg@capazero.net
 description: >- # this means to ignore newlines until "baseurl:"
   This site aims to keep track of the -current- Official Microsoft PowerShell modules to administer Microsoft 365 and Azure. Contributions are welcomed!
