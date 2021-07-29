@@ -33,6 +33,7 @@ $modulesToBeChecked = @(
   'Microsoft.Online.SharePoint.PowerShell',
   'AzureAD',
   'AzureADPreview',
+  'Az',
   'WhiteboardAdmin',
   # 'Microsoft.SharePoint.MigrationTool',
   'MicrosoftPowerBIMgmt',
