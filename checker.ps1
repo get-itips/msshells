@@ -145,7 +145,7 @@ try {
     $change = $changesDetected[0]
     #>
     $currentContent = $currentContent | ForEach-Object {
-      if ($_ -match "https\:\/\/www\.powershellgallery\.com\/packages\/$($change.Module)") {
+      if ($_ -match "https\:\/\/www\.powershellgallery\.com\/packages\/$($change.Module)[\/)]") {
         if ($_ -match '\| *((?:\d+\.){2,}\d+(?:-preview)?)\d* *\|') {
           $version = $Matches[1]
           "$($_ -replace ($version, $change.Version))"
