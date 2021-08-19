@@ -38,5 +38,8 @@ Get-Module -ListAvailable MicrosoftTeams,ExchangeOnlineManagement,Microsoft.Onli
 
 ## Contributors
 - [Robert Dyjas](https://twitter.com/robdyy)
+- [shivtorov](https://github.com/shivtorov)
+- [Juraj Sucik](https://github.com/jurajsucik)
+
 
 
