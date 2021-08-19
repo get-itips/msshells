@@ -93,20 +93,12 @@ try {
     <#
     $moduleName = $modulesToBeChecked[0]
     #>
-    $skip = 0
-    $latestVersion = $null
-    $latestPreview = $null
-    $moduleEntry = $moduleData | Where-Object Modulename -eq $moduleName
-    do {
-      $res = Invoke-RestMethod -Method Get -Uri "$($findPackagesEndpointUrl)?id='$moduleName'&`$skip=$skip&`$top=$batchSize"
-      if ($res) {
-        $latestVersion = $res | Where-Object {$_.properties.IsLatestVersion.'#text' -eq 'true'}
-        $latestPreview = $res | Where-Object {$_.properties.isPrerelease.'#text' -eq 'true'} |
-          Sort-Object {[System.Version]($_.properties.Version -replace("-preview|-beta|-alpha",""))} |
+    $allModuleVersions = $null
+    $allModuleVersions = Find-Module $moduleName -AllVersions -AllowPrerelease
+    $latestVersion = $allModuleVersions | Where-Object {$_.AdditionalMetadata.IsLatestVersion -eq 'true'}
+    $latestPreview = $allModuleVersions | Where-Object {$_.AdditionalMetadata.isPrerelease -eq 'true'} |
+          Sort-Object {[System.Version]($_.Version -replace("-preview|-beta|-alpha",""))} |
           Select-Object -Last 1
-      }
-      $skip += $batchSize
-    } until ($latestVersion -or $skip -eq '1000')
   
     if ($moduleEntry.Version -ne $latestVersion.properties.Version) {
       $changesDetected += @{
