@@ -100,26 +100,26 @@ try {
           Sort-Object {[System.Version]($_.Version -replace("-preview|-beta|-alpha",""))} |
           Select-Object -Last 1
   
-    if ($moduleEntry.Version -ne $latestVersion.properties.Version) {
+    if ($moduleEntry.Version -ne $latestVersion.Version) {
       $changesDetected += @{
         "Module" = $moduleName
         "Type" = "Release"
-        "Version" = $latestVersion.properties.Version
+        "Version" = $latestVersion.Version
       }
-      Write-Host "New version of $moduleName released: $($latestVersion.properties.Version)"
+      Write-Host "New version of $moduleName released: $($latestVersion.Version)"
     } else {
       Write-Verbose "No new version of $moduleName found"
     }
     if (
         $moduleEntryPrereleaseVersion -match '(\d+\.){2,3}\d+' -and
-        $moduleEntry.PrereleaseVersion -ne $latestPreview.properties.Version
+        $moduleEntry.PrereleaseVersion -ne $latestPreview.Version
       ) {
         $changesDetected += @{
           "Module" = $moduleName
           "Type" = "Prerelease"
-          "Version" = $latestPreview.properties.Version
+          "Version" = $latestPreview.Version
         }
-      Write-Host "New prerelease version of $moduleName found: $($latestPreview.properties.Version)"
+      Write-Host "New prerelease version of $moduleName found: $($latestPreview.Version)"
     } else {
       Write-Verbose "No new prerelease version of $moduleName found"
     }
