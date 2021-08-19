@@ -41,8 +41,6 @@ $modulesToBeChecked = @(
   'Microsoft.PowerApps.PowerShell',
   'MSCommerce'
 )
-$batchSize = 40
-$findPackagesEndpointUrl = 'https://www.powershellgallery.com/api/v2/FindPackagesById()'
 
 # Regexes
 $moduleRegex = '^\|(?:[^\|]*)\| *\[(?:[\w .]*)\]\(https\:\/\/www\.powershellgallery\.com\/packages\/(\w.*)\/?\) *\|([^\|]*)\|[^\|]*\|([^\|]*)\|[^\|]*'
