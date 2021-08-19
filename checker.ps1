@@ -95,31 +95,33 @@ try {
     #>
     $allModuleVersions = $null
     $allModuleVersions = Find-Module $moduleName -AllVersions -AllowPrerelease
-    $latestVersion = $allModuleVersions | Where-Object {$_.AdditionalMetadata.IsLatestVersion -eq 'true'}
+    $latestVersion = $allModuleVersions | Where-Object {$_.AdditionalMetadata.IsAbsoluteLatestVersion -eq 'true'}
     $latestPreview = $allModuleVersions | Where-Object {$_.AdditionalMetadata.isPrerelease -eq 'true'} |
           Sort-Object {[System.Version]($_.Version -replace("-preview|-beta|-alpha",""))} |
           Select-Object -Last 1
+    $latestVersionNumber = $latestVersion.Version
+    $latestPreviewNumber = $latestPreview.Version
   
-    if ($moduleEntry.Version -ne $latestVersion.Version) {
+    if ($moduleEntry.Version -ne $latestVersionNumber) {
       $changesDetected += @{
         "Module" = $moduleName
         "Type" = "Release"
-        "Version" = $latestVersion.Version
+        "Version" = $latestVersionNumber
       }
-      Write-Host "New version of $moduleName released: $($latestVersion.Version)"
+      Write-Host "New version of $moduleName released: $latestVersionNumber"
     } else {
       Write-Verbose "No new version of $moduleName found"
     }
     if (
         $moduleEntryPrereleaseVersion -match '(\d+\.){2,3}\d+' -and
-        $moduleEntry.PrereleaseVersion -ne $latestPreview.Version
+        $moduleEntry.PrereleaseVersion -ne $latestPreviewNumber
       ) {
         $changesDetected += @{
           "Module" = $moduleName
           "Type" = "Prerelease"
-          "Version" = $latestPreview.Version
+          "Version" = $latestPreviewNumber
         }
-      Write-Host "New prerelease version of $moduleName found: $($latestPreview.Version)"
+      Write-Host "New prerelease version of $moduleName found: $latestPreviewNumber"
     } else {
       Write-Verbose "No new prerelease version of $moduleName found"
     }
