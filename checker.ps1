@@ -113,7 +113,7 @@ try {
       Write-Verbose "No new version of $moduleName found"
     }
     if (
-        $moduleEntryPrereleaseVersion -match '(\d+\.){2,3}\d+' -and
+        $moduleEntry.PrereleaseVersion -match '(\d+\.){2,3}\d+' -and
         $moduleEntry.PrereleaseVersion -ne $latestPreviewNumber
       ) {
         $changesDetected += @{
