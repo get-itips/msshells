@@ -94,6 +94,8 @@ try {
     $moduleName = $modulesToBeChecked[0]
     #>
     $allModuleVersions = $null
+
+    $moduleEntry = $moduleData | Where-Object Modulename -eq $moduleName
     $allModuleVersions = Find-Module $moduleName -AllVersions -AllowPrerelease
     $latestVersion = $allModuleVersions | Where-Object {$_.AdditionalMetadata.IsAbsoluteLatestVersion -eq 'true'}
     $latestPreview = $allModuleVersions | Where-Object {$_.AdditionalMetadata.isPrerelease -eq 'true'} |
