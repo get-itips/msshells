@@ -94,6 +94,10 @@ try {
     $moduleName = $modulesToBeChecked[0]
     #>
     $allModuleVersions = $null
+    $latestVersion = $null
+    $latestPreview = $null
+    $latestVersionNumber = $null
+    $latestPreviewNumber = $null
 
     $moduleEntry = $moduleData | Where-Object Modulename -eq $moduleName
     $allModuleVersions = Find-Module $moduleName -AllVersions -AllowPrerelease
