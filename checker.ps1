@@ -41,8 +41,6 @@ $modulesToBeChecked = @(
   'Microsoft.PowerApps.PowerShell',
   'MSCommerce'
 )
-$batchSize = 40
-$findPackagesEndpointUrl = 'https://www.powershellgallery.com/api/v2/FindPackagesById()'
 
 # Regexes
 $moduleRegex = '^\|(?:[^\|]*)\| *\[(?:[\w .]*)\]\(https\:\/\/www\.powershellgallery\.com\/packages\/(\w.*)\/?\) *\|([^\|]*)\|[^\|]*\|([^\|]*)\|[^\|]*'
@@ -93,41 +91,41 @@ try {
     <#
     $moduleName = $modulesToBeChecked[0]
     #>
-    $skip = 0
+    $allModuleVersions = $null
     $latestVersion = $null
     $latestPreview = $null
+    $latestVersionNumber = $null
+    $latestPreviewNumber = $null
+
     $moduleEntry = $moduleData | Where-Object Modulename -eq $moduleName
-    do {
-      $res = Invoke-RestMethod -Method Get -Uri "$($findPackagesEndpointUrl)?id='$moduleName'&`$skip=$skip&`$top=$batchSize"
-      if ($res) {
-        $latestVersion = $res | Where-Object {$_.properties.IsLatestVersion.'#text' -eq 'true'}
-        $latestPreview = $res | Where-Object {$_.properties.isPrerelease.'#text' -eq 'true'} |
-          Sort-Object {[System.Version]($_.properties.Version -replace("-preview|-beta|-alpha",""))} |
+    $allModuleVersions = Find-Module $moduleName -AllVersions -AllowPrerelease
+    $latestVersion = $allModuleVersions | Where-Object {$_.AdditionalMetadata.IsAbsoluteLatestVersion -eq 'true'}
+    $latestPreview = $allModuleVersions | Where-Object {$_.AdditionalMetadata.isPrerelease -eq 'true'} |
+          Sort-Object {[System.Version]($_.Version -replace("-preview|-beta|-alpha",""))} |
           Select-Object -Last 1
-      }
-      $skip += $batchSize
-    } until ($latestVersion -or $skip -eq '1000')
+    $latestVersionNumber = $latestVersion.Version
+    $latestPreviewNumber = $latestPreview.Version
   
-    if ($moduleEntry.Version -ne $latestVersion.properties.Version) {
+    if ($moduleEntry.Version -ne $latestVersionNumber) {
       $changesDetected += @{
         "Module" = $moduleName
         "Type" = "Release"
-        "Version" = $latestVersion.properties.Version
+        "Version" = $latestVersionNumber
       }
-      Write-Host "New version of $moduleName released: $($latestVersion.properties.Version)"
+      Write-Host "New version of $moduleName released: $latestVersionNumber"
     } else {
       Write-Verbose "No new version of $moduleName found"
     }
     if (
-        $moduleEntryPrereleaseVersion -match '(\d+\.){2,3}\d+' -and
-        $moduleEntry.PrereleaseVersion -ne $latestPreview.properties.Version
+        $moduleEntry.PrereleaseVersion -match '(\d+\.){2,3}\d+' -and
+        $moduleEntry.PrereleaseVersion -ne $latestPreviewNumber
       ) {
         $changesDetected += @{
           "Module" = $moduleName
           "Type" = "Prerelease"
-          "Version" = $latestPreview.properties.Version
+          "Version" = $latestPreviewNumber
         }
-      Write-Host "New prerelease version of $moduleName found: $($latestPreview.properties.Version)"
+      Write-Host "New prerelease version of $moduleName found: $latestPreviewNumber"
     } else {
       Write-Verbose "No new prerelease version of $moduleName found"
     }
