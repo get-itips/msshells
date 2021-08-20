@@ -1,9 +1,9 @@
 name: Autoupdater
 
-# Run every day at 2AM 
+# Run every day at 2AM and 2PM
 on:
   schedule:
-  - cron: "0 2 * * *"
+  - cron: "0 2,14 * * *"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
