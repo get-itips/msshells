@@ -39,7 +39,8 @@ $modulesToBeChecked = @(
   'MicrosoftPowerBIMgmt',
   'Microsoft.PowerApps.Administration.PowerShell',
   'Microsoft.PowerApps.PowerShell',
-  'MSCommerce'
+  'MSCommerce',
+  'Microsoft.Graph'
 )
 
 # Regexes
