@@ -24,6 +24,7 @@ layout: default
 |PowerApps (Maker)|[Microsoft.PowerApps.PowerShell](https://www.powershellgallery.com/packages/Microsoft.PowerApps.PowerShell/)|1.0.20|```Install-Module -Name Microsoft.PowerApps.PowerShell```|N/A|N/A|```Add-PowerAppsAccount``` (Run as Administrator) [More methods](https://docs.microsoft.com/power-platform/admin/powerapps-powershell#installation)|No|
 |MS Commerce|[MSCommerce](https://www.powershellgallery.com/packages/MSCommerce)|1.7|```Install-Module -Name MSCommerce```|N/A|N/A|```Connect-MSCommerce``` [More methods](https://docs.microsoft.com/power-bi/admin/service-admin-disable-self-service#change-the-self-service-signup-policy-1)|No|
 |Microsoft Graph services|[Microsoft.Graph](https://www.powershellgallery.com/packages/Microsoft.Graph/)|1.8.0|```Install-Module -Name Microsoft.Graph```|N/A|N/A|```Connect-MgGraph``` [More methods](https://docs.microsoft.com/en-us/graph/powershell/get-started)|Yes|
+|Universal Print|[UniversalPrintManagement](https://www.powershellgallery.com/packages/UniversalPrintManagement/)|0.14.2|```Install-Module -Name UniversalPrintManagement```|N/A|N/A|```Connect-UPService``` [More methods](https://docs.microsoft.com/en-us/universal-print/fundamentals/universal-print-powershell)|No|
 
 Do you think a module is missing or has incorrect information? Please, let me know, either creating an [issue](https://github.com/get-itips/msshells/issues/new) or a [pull request](https://github.com/get-itips/msshells/edit/dev/index.markdown) against this page.
 
@@ -33,7 +34,7 @@ Looking for a complete list of Microsoft 365/Azure portals? Check out [https://m
 You can use the following PowerShell one-liner to check:
 
 ```powershell
-Get-Module -ListAvailable MicrosoftTeams,ExchangeOnlineManagement,Microsoft.Online.SharePoint.PowerShell,AzureAD,AzureADPreview,Az,WhiteboardAdmin,Microsoft.SharePoint.MigrationTool,MicrosoftPowerBIMgmt,Microsoft.PowerApps.Administration.PowerShell,Microsoft.PowerApps.PowerShell,MSCommerce,Microsoft.Graph | Format-Table Name,Version
+Get-Module -ListAvailable MicrosoftTeams,ExchangeOnlineManagement,Microsoft.Online.SharePoint.PowerShell,AzureAD,AzureADPreview,Az,WhiteboardAdmin,Microsoft.SharePoint.MigrationTool,MicrosoftPowerBIMgmt,Microsoft.PowerApps.Administration.PowerShell,Microsoft.PowerApps.PowerShell,MSCommerce,Microsoft.Graph,UniversalPrintManagement | Format-Table Name,Version
 ```
 
 ## Maintainer
