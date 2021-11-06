@@ -101,7 +101,9 @@ try {
 
     $moduleEntry = $moduleData | Where-Object Modulename -eq $moduleName
     $allModuleVersions = Find-Module $moduleName -AllVersions -AllowPrerelease
-    $latestVersion = $allModuleVersions | Where-Object {$_.AdditionalMetadata.IsAbsoluteLatestVersion -eq 'true'}
+    $latestVersion = $allModuleVersions | Where-Object {$_.AdditionalMetadata.IsPrerelease -ne 'true'} |
+          Sort-Object {[System.Version]($_.Version)} |
+                Select-Object -Last 1
     $latestPreview = $allModuleVersions | Where-Object {$_.AdditionalMetadata.isPrerelease -eq 'true'} |
           Sort-Object {[System.Version]($_.Version -replace("-preview|-beta|-alpha",""))} |
           Select-Object -Last 1
