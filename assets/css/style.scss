@@ -18,3 +18,58 @@
     color: #AA0000;
   }
 }
+
+
+@media screen and (max-width: 42em)  {
+/* Credits https://codepen.io/paulobrien/pen/KxhFk */
+  table, tbody, thead, tbody, th, td, tr {
+    display: block;
+    float:left;/* ie9 fix */
+    width:100%;
+    clear:both;
+  }
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  tr {
+    border: 1px solid #ccc;
+  }
+  td,th {
+    border: none;
+    border-bottom: 1px solid #eee;
+  }
+  td:before {
+    float:left;
+    width: 95%;
+    padding:0 0 0 1%;
+    margin-left:-100%;
+  }
+  td{
+    padding-left:50%;
+  -moz-box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+    box-sizing:border-box; 
+  }
+
+  tr {
+    margin: 2rem 0
+  }
+
+  td:before {
+    display: block;
+    margin-left: 0;
+    width: 100%;
+  }
+  
+  /* Label the data	*/
+  td:nth-of-type(1):before {content: "To Administer	";}
+  td:nth-of-type(2):before {content: "Module Name";}
+  td:nth-of-type(3):before {content: "Stable Version";}
+  td:nth-of-type(4):before {content: "How To Install";}
+  td:nth-of-type(5):before {content: "Preview Version";}
+  td:nth-of-type(6):before {content: "How To Install";}
+  td:nth-of-type(7):before {content: "How to Connect";}
+  td:nth-of-type(8):before {content: "Works in PS7?";}
+}
