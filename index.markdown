@@ -9,7 +9,7 @@ layout: default
 
 | To Administer | Module Name | Stable Version | How To Install | Preview Version | How To Install | How to Connect | Works in PS7? |
 | ------------- | :---------: | -------------- | -------------- | --------------- | -------------- | -------------- | ------------- |
-{% for module in ps_mods %}| {{ module.toAdminister }}| [{{ module.name }}](https://www.powershellgallery.com/packages/{{ module.Name }}) | {{ module.stableVersion }} | {{ module.howToInstall | strip_newlines }} | {{ module.previewVersion }} | {{ module.howToInstallPre | strip_newlines }} | {{ module.howToConnect | strip_newlines}} | {{ module.PS7 | toString }} 
+{% for module in ps_mods %}| {{ module.toAdminister }}| [{{ module.name }}]({% if module.link %}{{ module.link }}{% else %}  https://www.powershellgallery.com/packages/{{ module.name }}{% endif %}) | {{ module.stableVersion }} | {% if module.howToInstall %}```Install-Module -Name {{ module.name }}```{% else %}```Install-Module -Name {{ module.name }}```{% endif %} | {{ module.previewVersion }} | {{ module.howToInstallPre | strip_newlines }} | {{ module.howToConnect | strip_newlines}} | {{ module.PS7 | toString }} |
 {% endfor %}
 
 
@@ -20,8 +20,9 @@ Looking for a complete list of Microsoft 365/Azure portals? Check out [https://m
 ## Am I running the most up-to-date version?
 You can use the following PowerShell one-liner to check:
 
+<!--- ps_mods[0] used to avoid leading/trailing comma -->
 ```powershell
-Get-Module -ListAvailable MicrosoftTeams,ExchangeOnlineManagement,Microsoft.Online.SharePoint.PowerShell,AzureAD,AzureADPreview,Az,WhiteboardAdmin,Microsoft.SharePoint.MigrationTool,MicrosoftPowerBIMgmt,Microsoft.PowerApps.Administration.PowerShell,Microsoft.PowerApps.PowerShell,MSCommerce,Microsoft.Graph,UniversalPrintManagement | Format-Table Name,Version
+Get-Module -ListAvailable {{ ps_mods[0].name}}{% for module in ps_mods offset:2 %},{{ module.name }}{% endfor %} | Format-Table Name,Version
 ```
 
 ## Maintainer

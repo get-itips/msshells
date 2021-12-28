@@ -3,11 +3,9 @@ order: 1
 toAdminister: Exchange Online
 name: ExchangeOnlineManagement
 stableVersion: 2.0.5
-howToInstall: >
-  ```Install-Module ExchangeOnlineManagement```
 previewVersion: 2.0.6-Preview3
 howToInstallPre: >
-  ```Install-Module ExchangeOnlineManagement -RequiredVersion 2.0.6-Preview3 -AllowPrerelease```
+  ```Install-Module  -Name ExchangeOnlineManagement -RequiredVersion 2.0.6-Preview3 -AllowPrerelease```
 howToConnect: >
   ```Connect-ExchangeOnline```
   [More methods](https://docs.microsoft.com/powershell/exchange/connect-to-exchange-online-powershell?view=exchange-ps#connect-to-exchange-online-powershell-using-modern-authentication-with-or-without-mfa)

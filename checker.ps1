@@ -5,7 +5,7 @@
   .DESCRIPTION
   Detects any new versions of modules for https://msshells.net
   Should be run via scheduled GitHub Actions
-  Version: 0.1
+  Version: 0.2
 
   .NOTES
   Author: Robert Dyjas https://github.com/robdy
@@ -13,7 +13,7 @@
   Workflow:
   - Before running, make sure to checkout the repository 
   so the data can be pulled from local file
-  - Get current data from Markdown file
+  - Get current data from Markdown files
   - Update checked file so that PR can be opened
 
   Known issues:
@@ -26,27 +26,8 @@
 # ================
 #region Variables
 # ================
-$indexFilePath = 'index.markdown'
-$modulesToBeChecked = @(
-  'MicrosoftTeams',
-  'ExchangeOnlineManagement',
-  'Microsoft.Online.SharePoint.PowerShell',
-  'AzureAD',
-  'AzureADPreview',
-  'MSOnline',
-  'Az',
-  'WhiteboardAdmin',
-  # 'Microsoft.SharePoint.MigrationTool',
-  'MicrosoftPowerBIMgmt',
-  'Microsoft.PowerApps.Administration.PowerShell',
-  'Microsoft.PowerApps.PowerShell',
-  'MSCommerce',
-  'Microsoft.Graph'
-)
-
-# Regexes
-$moduleRegex = '^\|(?:[^\|]*)\| *\[(?:[\w .]*)\]\(https\:\/\/www\.powershellgallery\.com\/packages\/(\w.*)\/?\) *\|([^\|]*)\|[^\|]*\|([^\|]*)\|[^\|]*'
-$skippedLinesRegex = '^\|(?:(?: *To Administer)|(?:-+))'
+$dataFolderPath = "./_ps_modules"
+$excludedModules = @('Microsoft.SharePoint.MigrationTool')
 
 $changesDetected = @()
 
@@ -66,29 +47,19 @@ try {
   if ($env:GITHUB_ACTIONS) {
     Set-Location $env:GITHUB_WORKSPACE
   }
-  $mdFileContent = Get-Content $indexFilePath
-  
-  # Filter out unnecessary lines
-  $moduleRows = $mdFileContent.Split("`n") | Where-Object {
-    $_ -match $moduleRegex -and
-    $_ -notmatch $skippedLinesRegex
-  }
-  
-  # Extract version from applicable lines
-  $moduleData = foreach ($moduleRow in $moduleRows) {
-    <#
-    $moduleRow = $moduleRows[0]
-    #>
-    $Matches = $null
-    if ($moduleRow -match $moduleRegex) {
-      @{
-        "ModuleName" = $Matches[1].Trim() -replace('\/$','')
-        "Version" = $Matches[2].Trim()
-        "PrereleaseVersion" = $Matches[3].Trim()
-      }
+  # Convert files from YAML
+  $moduleDataObj = Get-ChildItem -Path $dataFolderPath | ForEach-Object {
+    @{
+      FileName = $PSItem.Name
+      Content = ConvertFrom-Yaml -Yaml (
+          Get-Content -Path $PSItem -Raw
+        ).replace("---`n", "").trim()
     }
   }
   
+  $modulesToBeChecked = $moduleDataObj.Content.Name |
+    Where-Object { $_ -notin $excludedModules } |
+    Select-Object -Unique
   foreach ($moduleName in $modulesToBeChecked) {
     <#
     $moduleName = $modulesToBeChecked[0]
@@ -99,7 +70,7 @@ try {
     $latestVersionNumber = $null
     $latestPreviewNumber = $null
 
-    $moduleEntry = $moduleData | Where-Object Modulename -eq $moduleName
+    $moduleEntry = $moduleDataObj.Content | Where-Object name -eq $moduleName
     $allModuleVersions = Find-Module $moduleName -AllVersions -AllowPrerelease
     $latestVersion = $allModuleVersions | Where-Object {$_.AdditionalMetadata.IsPrerelease -ne 'true'} |
           Sort-Object {[System.Version]($_.Version)} |
@@ -110,7 +81,7 @@ try {
     $latestVersionNumber = $latestVersion.Version
     $latestPreviewNumber = $latestPreview.Version
   
-    if ($moduleEntry.Version -ne $latestVersionNumber) {
+    if ($moduleEntry.stableVersion -ne $latestVersionNumber) {
       $changesDetected += @{
         "Module" = $moduleName
         "Type" = "Release"
@@ -121,8 +92,8 @@ try {
       Write-Verbose "No new version of $moduleName found"
     }
     if (
-        $moduleEntry.PrereleaseVersion -match '(\d+\.){2,3}\d+' -and
-        $moduleEntry.PrereleaseVersion -ne $latestPreviewNumber
+        $moduleEntry.previewVersion -match '(\d+\.){2,3}\d+' -and
+        $moduleEntry.previewVersion -ne $latestPreviewNumber
       ) {
         $changesDetected += @{
           "Module" = $moduleName
@@ -140,25 +111,27 @@ try {
     return
   }
   
-  $currentContent = Get-Content $indexFilePath
-  
   foreach ($change in $changesDetected) {
     <#
     $change = $changesDetected[0]
     #>
-    $currentContent = $currentContent | ForEach-Object {
-      if ($_ -match "https\:\/\/www\.powershellgallery\.com\/packages\/$($change.Module)[\/)]") {
-        if ($_ -match '\| *((?:\d+\.){2,}\d+(?:-preview)?)\d* *\|') {
-          $version = $Matches[1]
-          "$($_ -replace ($version, $change.Version))"
-        }
-      } else {
-        $_
+    $changedModuleFileNames = @((
+      $moduleDataObj | Where-Object {$_.Content.Name -eq $change.Module}
+      ).FileName)
+    foreach ($changedModuleFileName in $changedModuleFileNames) {
+      $changedModuleFilePath = (Join-Path $dataFolderPath $changedModuleFileName)
+      if ($change.Type -eq 'Release') {
+        $replacePattern = '^(stableVersion): (.*$)'
       }
+      if ($change.Type -eq 'Prerelease') {
+        $replacePattern = '^(previewVersion): (.*$)'
+      }
+      $oldContent = Get-Content -Path $changedModuleFilePath
+      $newContent = $oldcontent -replace ($replacePattern, "`$1: $($change.Version)")
+      $newContent | Out-File $changedModuleFilePath
     }
   }
 
-  $currentContent | Out-File $indexFilePath
   Write-Host 'Finished updating data'
 
   # Output value to be used in commit message
