@@ -33,34 +33,25 @@
     top: -9999px;
     left: -9999px;
   }
-  tr {
-    border: 1px solid #ccc;
-  }
-  td,th {
-    border: none;
-    border-bottom: 1px solid #eee;
-  }
+
   td:before {
     float:left;
-    width: 95%;
     padding:0 0 0 1%;
-    margin-left:-100%;
+    text-align: right;
+    display: block;
+    margin-left: -46%;
+    width: 40%;
   }
-  td{
-    padding-left:50%;
-  -moz-box-sizing:border-box;
-  -webkit-box-sizing:border-box;
+  .main-content table td {
+    padding-left: 31%;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
     box-sizing:border-box; 
+    text-align: left !important;
   }
 
   tr {
-    margin: 2rem 0
-  }
-
-  td:before {
-    display: block;
-    margin-left: 0;
-    width: 100%;
+    margin: 2em 0
   }
   
   /* Label the data	*/
