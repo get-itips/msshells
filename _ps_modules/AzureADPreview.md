@@ -1,0 +1,13 @@
+---
+order: 5
+toAdminister: Azure AD
+name: AzureADPreview
+stableVersion: 2.0.2.138
+previewVersion: N/A
+howToInstallPre: >
+  N/A
+howToConnect: >
+  ```Connect-AzureAD```
+  [More methods](https://docs.microsoft.com/en-us/microsoft-365/enterprise/connect-to-microsoft-365-powershell?view=o365-worldwide#connect-with-the-azure-active-directory-powershell-for-graph-module)
+PS7: "No"
+---
