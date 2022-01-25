@@ -16,19 +16,12 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - name: Setup PowerShell module cache
-        id: cacher
-        uses: actions/cache@v2
+      - name: Install and cache PowerShell modules
+        id: psmodulecache
+        uses: potatoqualitee/psmodulecache@v4
         with:
-          path: "~/.local/share/powershell/Modules"
-          key: ${{ runner.os }}-powershell-yaml
-
-      - name: Install required PowerShell modules
-        if: steps.cacher.outputs.cache-hit != 'true'
-        shell: pwsh
-        run: |
-          Set-PSRepository PSGallery -InstallationPolicy Trusted
-          Install-Module powershell-yaml -ErrorAction Stop
+          modules-to-cache: powershell-yaml
+          shell: powershell, pwsh
 
       - name: Run script
         id: checker
