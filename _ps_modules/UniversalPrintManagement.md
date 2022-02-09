@@ -2,7 +2,7 @@
 order: 15
 toAdminister: Universal Print
 name: UniversalPrintManagement
-stableVersion: 0.14.2
+stableVersion: 1.0.0
 previewVersion: N/A
 howToInstallPre: >
   N/A
