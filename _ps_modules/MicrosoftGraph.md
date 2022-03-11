@@ -2,7 +2,7 @@
 order: 14
 toAdminister: Microsoft Graph services
 name: Microsoft.Graph
-stableVersion: 1.9.2
+stableVersion: 1.9.3
 previewVersion: N/A
 howToInstallPre: >
   N/A
