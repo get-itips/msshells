@@ -6,7 +6,7 @@ link: https://docs.microsoft.com/en-us/sharepointmigration/new-and-improved-feat
 stableVersion: 3.4.122.4
 howToInstall: >
   Tricky, see [here](https://aka.ms/spmt-ga-page) and [here](https://docs.microsoft.com/sharepointmigration/overview-spmt-ps-cmdlets#before-you-begin)
-previewVersion: 3.5.123.4
+previewVersion: 3.5.123.5
 howToInstallPre: >
   Tricky, see [here](https://spmtreleasescus.blob.core.windows.net/betainstall/default.htm) and [here](https://docs.microsoft.com/sharepointmigration/overview-spmt-ps-cmdlets#before-you-begin)
 howToConnect: >
