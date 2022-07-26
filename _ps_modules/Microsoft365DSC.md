@@ -8,6 +8,6 @@ howToInstallPre: >
   N/A
 howToConnect: >
   ```Export-M365DSCConfiguration```
-  [More methods]([https://docs.microsoft.com/en-us/powershell/module/az.accounts/connect-azaccount](https://github.com/microsoft/Microsoft365DSC/blob/Dev/docs/docs/user-guide/get-started/introduction.md))
+  [More methods](https://github.com/microsoft/Microsoft365DSC/blob/Dev/docs/docs/user-guide/get-started/introduction.md)
 PS7: "No"
 ---
