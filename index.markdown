@@ -12,6 +12,7 @@ layout: default
 {% for module in ps_mods %}| {{ module.toAdminister }}| [{{ module.name }}]({% if module.link %}{{ module.link }}{% else %}  https://www.powershellgallery.com/packages/{{ module.name }}{% endif %}) | {{ module.stableVersion }} | {% if module.howToInstall %}```Install-Module -Name {{ module.name }}```{% else %}```Install-Module -Name {{ module.name }}```{% endif %} | {{ module.previewVersion }} | {{ module.howToInstallPre | strip_newlines }} | {{ module.howToConnect | strip_newlines}} | {{ module.PS7 | toString }} |
 {% endfor %}
 
+**Note: PnP.PowerShell** is not a Microsoft provided module, is open-source and community provided library with active community providing support for it. Decided to include as an exception as it is very popular to administer Microsoft 365 stuff.
 
 Do you think a module is missing or has incorrect information? Please, let me know, either creating an [issue](https://github.com/get-itips/msshells/issues/new) or a [pull request](https://github.com/get-itips/msshells/edit/dev/index.markdown) against this page.
 
