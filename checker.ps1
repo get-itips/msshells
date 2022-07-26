@@ -76,7 +76,7 @@ try {
           Sort-Object {[System.Version]($_.Version)} |
                 Select-Object -Last 1
     $latestPreview = $allModuleVersions | Where-Object {$_.AdditionalMetadata.isPrerelease -eq 'true'} |
-          Sort-Object {[System.Version]($_.Version -replace("-preview|-beta|-alpha",""))} |
+          Sort-Object {[System.Version]($_.Version -replace("-preview|-beta|-alpha |-nightly",""))} |
           Select-Object -Last 1
     $latestVersionNumber = $latestVersion.Version
     $latestPreviewNumber = $latestPreview.Version
