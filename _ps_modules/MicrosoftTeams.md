@@ -5,7 +5,7 @@ name: MicrosoftTeams
 stableVersion: 4.6.0
 previewVersion: 4.6.1-preview
 howToInstallPre: >
-  ```Install-Module MicrosoftTeams -RequiredVersion 3.0.1-preview -AllowPrerelease```
+  ```Install-Module MicrosoftTeams -RequiredVersion 4.6.1-preview -AllowPrerelease```
 howToConnect: >
   ```Connect-MicrosoftTeams```
   [More methods](https://docs.microsoft.com/MicrosoftTeams/teams-powershell-install#sign-in)
