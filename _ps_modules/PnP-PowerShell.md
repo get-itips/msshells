@@ -3,7 +3,7 @@ order: 17
 toAdminister: Microsoft 365
 name: PnP.PowerShell
 stableVersion: 1.11.0
-previewVersion: 1.11.89-nightly
+previewVersion: 1.11.90-nightly
 howToInstallPre: >
   ```Install-Module -Name PnP.PowerShell -AllowPrerelease```
 howToConnect: >
