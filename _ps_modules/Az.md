@@ -8,6 +8,6 @@ howToInstallPre: >
   N/A
 howToConnect: >
   ```Connect-AzAccount```
-  [More methods](https://docs.microsoft.com/en-us/powershell/module/az.accounts/connect-azaccount)
+  [More methods](https://docs.microsoft.com/en-us/powershell/module/az.accounts/connect-azaccount?WT.mc_id=M365-MVP-5004663)
 PS7: "Yes"
 ---
