@@ -8,6 +8,6 @@ howToInstallPre: >
   N/A
 howToConnect: >
   ```Connect-SPOService -Url https://contoso-admin.sharepoint.com -Credential admin@contoso.com```
-  [More methods](https://docs.microsoft.com/powershell/sharepoint/sharepoint-online/connect-sharepoint-online?view=sharepoint-ps#to-connect-with-a-user-name-and-password)
+  [More methods](https://docs.microsoft.com/powershell/sharepoint/sharepoint-online/connect-sharepoint-online?view=sharepoint-ps#to-connect-with-a-user-name-and-password?WT.mc_id=M365-MVP-5004663)
 PS7: "No"
 ---

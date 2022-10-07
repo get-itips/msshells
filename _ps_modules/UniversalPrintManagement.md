@@ -8,6 +8,6 @@ howToInstallPre: >
   N/A
 howToConnect: >
   ```Connect-UPService```
-  [More methods](https://docs.microsoft.com/en-us/universal-print/fundamentals/universal-print-powershell)
+  [More methods](https://docs.microsoft.com/en-us/universal-print/fundamentals/universal-print-powershell?WT.mc_id=M365-MVP-5004663)
 PS7: "No"
 ---
