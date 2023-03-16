@@ -2,7 +2,7 @@
 order: 16
 toAdminister: Microsoft 365
 name: Microsoft365DSC
-stableVersion: 1.23.308.1
+stableVersion: 1.23.315.1
 previewVersion: N/A
 howToInstallPre: >
   N/A
