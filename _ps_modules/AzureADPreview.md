@@ -2,7 +2,7 @@
 order: 5
 toAdminister: Azure AD
 name: AzureADPreview
-stableVersion: 2.0.2.149
+stableVersion: 2.0.2.181
 previewVersion: N/A
 howToInstallPre: >
   N/A
