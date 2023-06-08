@@ -2,7 +2,7 @@
 order: 4
 toAdminister: Azure AD
 name: AzureAD
-stableVersion: 2.0.2.140
+stableVersion: 2.0.2.180
 previewVersion: See next row
 howToInstallPre: >
   N/A
