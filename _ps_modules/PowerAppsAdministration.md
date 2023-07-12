@@ -2,7 +2,7 @@
 order: 11
 toAdminister: PowerApps (Administrator)
 name: Microsoft.PowerApps.Administration.PowerShell
-stableVersion: 2.0.166
+stableVersion: 2.0.167
 previewVersion: N/A
 howToInstallPre: >
   N/A
