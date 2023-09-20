@@ -2,7 +2,7 @@
 order: 13
 toAdminister: MS Commerce
 name: MSCommerce
-stableVersion: 1.9
+stableVersion: 1.10
 previewVersion: N/A
 howToInstallPre: >
   N/A
