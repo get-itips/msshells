@@ -2,7 +2,7 @@
 order: 8
 toAdminister: MSOnline
 name: MSOnline
-stableVersion: 1.1.183.66
+stableVersion: 1.1.183.80
 previewVersion: N/A
 howToInstallPre: >
   N/A
