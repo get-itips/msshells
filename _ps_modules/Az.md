@@ -2,7 +2,7 @@
 order: 6
 toAdminister: Azure Az PowerShell
 name: Az
-stableVersion: 10.4.1
+stableVersion: 11.0.0
 previewVersion: N/A
 howToInstallPre: >
   N/A
