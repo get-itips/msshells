@@ -2,7 +2,7 @@
 order: 19
 toAdminister: Azure Information Protection
 name: AIPService
-stableVersion: 2.0.0.3
+stableVersion: 3.0.0.0
 previewVersion: N/A
 howToInstallPre: >
   N/A
