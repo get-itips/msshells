@@ -2,7 +2,7 @@
 order: 12
 toAdminister: PowerApps (Maker)
 name: Microsoft.PowerApps.PowerShell
-stableVersion: 1.0.38
+stableVersion: 1.0.39
 previewVersion: N/A
 howToInstallPre: >
   N/A
