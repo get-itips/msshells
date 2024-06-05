@@ -27,7 +27,7 @@
 #region Variables
 # ================
 $dataFolderPath = "./_ps_modules"
-$excludedModules = @('Microsoft.SharePoint.MigrationTool','Microsoft.Graph')
+$excludedModules = @('Microsoft.SharePoint.MigrationTool','Microsoft.Graph','Microsoft.Graph.Beta')
 
 $changesDetected = @()
 
