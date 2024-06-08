@@ -8,6 +8,6 @@ howToInstallPre: >
   ```Install-Module -Name MicrosoftPlaces -AllowPrerelease```
 howToConnect: >
   ```Connect-MicrosoftPlaces```
-  [More methods](https://learn.microsoft.com/deployoffice/places/powershell/connect-microsoftplaces&WT.mc_id=M365-MVP-5004663)
+  [More methods](https://learn.microsoft.com/deployoffice/places/powershell/connect-microsoftplaces)
 PS7: "Yes"
 ---
