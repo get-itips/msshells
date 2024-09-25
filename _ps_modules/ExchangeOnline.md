@@ -2,7 +2,7 @@
 order: 1
 toAdminister: Exchange Online
 name: ExchangeOnlineManagement
-stableVersion: 3.5.1
+stableVersion: 3.6.0
 previewVersion: 3.6.0-Preview1
 howToInstallPre: >
   ```Install-Module  -Name ExchangeOnlineManagement -RequiredVersion 3.2.0-Preview4 -AllowPrerelease```
