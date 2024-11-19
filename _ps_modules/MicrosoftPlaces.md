@@ -2,10 +2,10 @@
 order: 21
 toAdminister: Microsoft Places
 name: MicrosoftPlaces
-stableVersion: N/A
-previewVersion: 0.32.0-alpha
+stableVersion: 1.0.0
+previewVersion: N/A
 howToInstallPre: >
-  ```Install-Module -Name MicrosoftPlaces -AllowPrerelease```
+  N/A
 howToConnect: >
   ```Connect-MicrosoftPlaces```
   [More methods](https://learn.microsoft.com/deployoffice/places/powershell/connect-microsoftplaces)
