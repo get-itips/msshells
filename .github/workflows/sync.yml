@@ -1,5 +1,5 @@
 name: Sync
-#run only if a push is agaisnt dev
+#run only if a push is against dev
 on:
   push:
     branches:
