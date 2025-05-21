@@ -2,7 +2,7 @@
 order: 2
 toAdminister: Security & Compliance
 name: ExchangeOnlineManagement
-stableVersion: 3.7.2
+stableVersion: 3.8.0
 previewVersion: 3.8.0-Preview2
 howToInstallPre: >
   ```Install-Module  -Name ExchangeOnlineManagement -RequiredVersion 2.0.6-Preview5 -AllowPrerelease```
