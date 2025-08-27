@@ -2,7 +2,7 @@
 order: 21
 toAdminister: Microsoft Places
 name: MicrosoftPlaces
-stableVersion: 1.0.0
+stableVersion: 2.0.0
 previewVersion: N/A
 howToInstallPre: >
   N/A
