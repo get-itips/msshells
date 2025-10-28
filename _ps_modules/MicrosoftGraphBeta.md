@@ -2,7 +2,7 @@
 order: 20
 toAdminister: Microsoft Graph services Beta
 name: Microsoft.Graph.Beta
-stableVersion: 2.19.0
+stableVersion: 2.32.0
 previewVersion: N/A
 howToInstallPre: >
   N/A
