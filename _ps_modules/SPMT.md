@@ -3,10 +3,10 @@ order: 9
 toAdminister: SharePoint Migration Tool
 name: Microsoft.SharePoint.MigrationTool
 link: https://docs.microsoft.com/en-us/sharepointmigration/new-and-improved-features-in-the-sharepoint-migration-tool
-stableVersion: 4.1.125.8
+stableVersion: 4.1.127.1
 howToInstall: >
   Tricky, see [here](https://aka.ms/spmt-ga-page) and [here](https://docs.microsoft.com/sharepointmigration/overview-spmt-ps-cmdlets#before-you-begin?WT.mc_id=M365-MVP-5004663)
-previewVersion: 4.1.125.9
+previewVersion: 4.1.129.0
 howToInstallPre: >
   Tricky, see [here](https://spmtreleasescus.blob.core.windows.net/betainstall/default.htm) and [here](https://docs.microsoft.com/sharepointmigration/overview-spmt-ps-cmdlets#before-you-begin?WT.mc_id=M365-MVP-5004663)
 howToConnect: >
