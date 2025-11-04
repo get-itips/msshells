@@ -2,7 +2,7 @@
 order: 3
 toAdminister: SharePoint Online
 name: Microsoft.Online.SharePoint.PowerShell
-stableVersion: 16.0.26510.12000
+stableVersion: 16.0.26615.12013
 previewVersion: N/A
 howToInstallPre: >
   N/A
