@@ -2,7 +2,7 @@
 order: 23
 toAdminister: Security
 name: ZeroTrustAssessment
-stableVersion: 2.0.0
+stableVersion: 2.1.0
 previewVersion: N/A
 howToInstallPre: >
   N/A

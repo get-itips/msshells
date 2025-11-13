@@ -2,7 +2,7 @@
 order: 18
 toAdminister: Microsoft Identity
 name: MSIdentityTools
-stableVersion: 2.1.0
+stableVersion: 2.2.0
 previewVersion: N/A
 howToInstallPre: >
   N/A
