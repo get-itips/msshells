@@ -3,7 +3,7 @@ order: 0
 toAdminister: Microsoft Teams
 name: MicrosoftTeams
 stableVersion: 7.5.0
-previewVersion: 7.3.2-preview
+previewVersion: 7.5.1-preview
 howToInstallPre: >
   ```Install-Module MicrosoftTeams -RequiredVersion 4.6.1-preview -AllowPrerelease```
 howToConnect: >
