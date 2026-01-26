@@ -2,7 +2,7 @@
 order: 7
 toAdminister: Whiteboard
 name: WhiteboardAdmin
-stableVersion: 1.13.6
+stableVersion: 1.13.8
 previewVersion: N/A
 howToInstallPre: >
   N/A
