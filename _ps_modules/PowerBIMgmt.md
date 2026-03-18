@@ -2,7 +2,7 @@
 order: 10
 toAdminister: Rollup module for Power BI Cmdlets
 name: MicrosoftPowerBIMgmt
-stableVersion: 1.3.80
+stableVersion: 1.3.83
 previewVersion: N/A
 howToInstallPre: >
   N/A
