@@ -2,7 +2,7 @@
 order: 22
 toAdminister: Microsoft Entra
 name: Microsoft.Entra
-stableVersion: 1.2.0
+stableVersion: 1.3.0
 previewVersion: N/A
 howToInstallPre: >
   N/A
