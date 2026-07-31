@@ -2,7 +2,7 @@
 order: 24
 toAdminister: Connector Cmd module for Microsoft Graph Connector
 name: Connector.Cmd
-stableVersion: 2.2
+stableVersion: 2.3
 previewVersion: N/A
 howToInstallPre: >
   N/A
