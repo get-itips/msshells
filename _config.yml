@@ -32,6 +32,7 @@ google_analytics: G-LFK2CV7T0J
 theme: jekyll-theme-cayman
 plugins:
   - jekyll-feed
+  - jekyll-redirect-from
 
 collections:
   - ps_modules
